@@ -34,3 +34,10 @@ class MotionAlarmApp(ctk.CTk):
 
         self.video_label = ctk.CTkLabel(self, text="", fg_color=PANEL, corner_radius=12)
         self.video_label.pack(padx=20, pady=(20, 10))
+
+        controls = ctk.CTkFrame(self, fg_color=PANEL, corner_radius=12)
+        controls.pack(padx=20, pady=(0, 10), fill="x")
+        ctk.CTkLabel(controls, text="Sensitivity", text_color=ACCENT).pack(side="left", padx=16, pady=14)
+        self.sensitivity_slider = ctk.CTkSlider(controls, from_=1, to=50, number_of_steps=49)
+        self.sensitivity_slider.set(15)
+        self.sensitivity_slider.pack(side="left", fill="x", expand=True, padx=16)
