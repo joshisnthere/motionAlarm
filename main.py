@@ -21,3 +21,11 @@ BG = "#100e0e"
 PANEL = "#1c1918"
 ACCENT = "#f2a154"
 SNAPSHOT_DIR = os.path.join(os.path.dirname(__file__), "snapshots")
+
+
+class MotionAlarmApp(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("Webcam Motion Alarm")
+        self.geometry("760x640")
+        self.configure(fg_color=BG)
