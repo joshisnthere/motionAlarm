@@ -29,3 +29,8 @@ class MotionAlarmApp(ctk.CTk):
         self.title("Webcam Motion Alarm")
         self.geometry("760x640")
         self.configure(fg_color=BG)
+
+        os.makedirs(SNAPSHOT_DIR, exist_ok=True)
+
+        self.video_label = ctk.CTkLabel(self, text="", fg_color=PANEL, corner_radius=12)
+        self.video_label.pack(padx=20, pady=(20, 10))
