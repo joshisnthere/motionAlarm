@@ -41,3 +41,10 @@ class MotionAlarmApp(ctk.CTk):
         self.sensitivity_slider = ctk.CTkSlider(controls, from_=1, to=50, number_of_steps=49)
         self.sensitivity_slider.set(15)
         self.sensitivity_slider.pack(side="left", fill="x", expand=True, padx=16)
+
+        self.status_var = ctk.StringVar(value="Watching...")
+        ctk.CTkLabel(self, textvariable=self.status_var, text_color="#8a8a8a").pack(anchor="w", padx=24)
+
+        self.log_box = ctk.CTkTextbox(self, fg_color=PANEL, height=140, width=700)
+        self.log_box.pack(padx=20, pady=(6, 20))
+        self.log_box.configure(state="disabled")
