@@ -48,3 +48,8 @@ class MotionAlarmApp(ctk.CTk):
         self.log_box = ctk.CTkTextbox(self, fg_color=PANEL, height=140, width=700)
         self.log_box.pack(padx=20, pady=(6, 20))
         self.log_box.configure(state="disabled")
+
+        self.cap = cv2.VideoCapture(0)
+        self.prev_gray = None
+        self.cooldown_until = None
+        self._update_frame()
