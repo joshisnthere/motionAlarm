@@ -84,3 +84,15 @@ class MotionAlarmApp(ctk.CTk):
         if self.cooldown_until and now < self.cooldown_until:
             return
         self.cooldown_until = now + datetime.timedelta(seconds=5)
+
+        for c in contours:
+            x, y, w, h = cv2.boundingRect(c)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (30, 165, 242), 2)
+
+        filename = os.path.join(SNAPSHOT_DIR, now.strftime("%Y%m%d_%H%M%S.jpg"))
+        cv2.imwrite(filename, frame)
+
+        self.log_box.configure(state="normal")
+        self.log_box.insert("end", f"{now.strftime('%H:%M:%S')}  motion detected -> {os.path.basename(filename)}\n")
+        self.log_box.see("end")
+        self.log_box.configure(state="disabled")
