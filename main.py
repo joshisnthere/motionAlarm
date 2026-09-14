@@ -68,3 +68,11 @@ class MotionAlarmApp(ctk.CTk):
                     self.status_var.set("Motion detected")
                 else:
                     self.status_var.set("Watching...")
+
+            self.prev_gray = gray
+
+            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            img = Image.fromarray(rgb).resize((720, 460))
+            photo = ImageTk.PhotoImage(img)
+            self.video_label.configure(image=photo)
+            self.video_label.image = photo
