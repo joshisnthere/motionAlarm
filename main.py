@@ -59,3 +59,12 @@ class MotionAlarmApp(ctk.CTk):
         if ok:
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray = cv2.GaussianBlur(gray, (21, 21), 0)
+
+            if self.prev_gray is not None:
+                threshold = int(self.sensitivity_slider.get())
+                triggered, contours = logic.detect_motion(self.prev_gray, gray, threshold)
+                if triggered:
+                    self._on_motion(frame, contours)
+                    self.status_var.set("Motion detected")
+                else:
+                    self.status_var.set("Watching...")
