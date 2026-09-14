@@ -76,3 +76,11 @@ class MotionAlarmApp(ctk.CTk):
             photo = ImageTk.PhotoImage(img)
             self.video_label.configure(image=photo)
             self.video_label.image = photo
+
+        self.after(30, self._update_frame)
+
+    def _on_motion(self, frame, contours):
+        now = datetime.datetime.now()
+        if self.cooldown_until and now < self.cooldown_until:
+            return
+        self.cooldown_until = now + datetime.timedelta(seconds=5)
