@@ -100,3 +100,8 @@ class MotionAlarmApp(ctk.CTk):
     def destroy(self):
         self.cap.release()
         super().destroy()
+
+
+if __name__ == "__main__":
+    app = MotionAlarmApp()
+    app.mainloop()
