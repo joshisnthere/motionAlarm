@@ -96,3 +96,7 @@ class MotionAlarmApp(ctk.CTk):
         self.log_box.insert("end", f"{now.strftime('%H:%M:%S')}  motion detected -> {os.path.basename(filename)}\n")
         self.log_box.see("end")
         self.log_box.configure(state="disabled")
+
+    def destroy(self):
+        self.cap.release()
+        super().destroy()
